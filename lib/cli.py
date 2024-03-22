@@ -5,7 +5,7 @@ from helpers import (
     exit_program,
     helper_1
 )
-
+# Loading Bar code
 colorama.init()
 
 def progress_bar(progress, total, color=colorama.Fore.YELLOW):
@@ -24,7 +24,7 @@ for i, x in enumerate(numbers):
     progress_bar(i + 1, len(numbers))
 
 print(colorama.Fore.RESET)
-
+###################################################################
 
 def main():
     while True:
