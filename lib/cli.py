@@ -2,11 +2,13 @@
 import colorama
 
 from load_bar import *
-from helpers import (
-    exit_program,
-    helper_1
-)
+from artist_helpers import *
+from album_helpers import *
+    
 
+def exit_program():
+    print("Goodbye!")
+    exit()
 
 def main():
     while True:
