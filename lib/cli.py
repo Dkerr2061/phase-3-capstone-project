@@ -7,7 +7,7 @@ from album_helpers import *
     
 
 def exit_program():
-    print("Goodbye!")
+    print("Goodbye!\n")
     exit()
 
 def main():
@@ -23,9 +23,12 @@ def main():
 
 
 def menu():
+    print(colorama.Fore.LIGHTMAGENTA_EX + "\nWelcome!")
+    print(colorama.Back.RESET)
     print(colorama.Fore.LIGHTRED_EX + "Please select an option:")
     print(colorama.Fore.RESET)
-    print(colorama.Fore.LIGHTCYAN_EX + "1. Some useful function")
+    print(colorama.Fore.LIGHTCYAN_EX + "1. Access Artist Data")
+    print(colorama.Fore.LIGHTCYAN_EX + "2. Access Album Data")
     print(colorama.Fore.LIGHTCYAN_EX + "0. Exit the program")
     print(colorama.Fore.RESET)
     
