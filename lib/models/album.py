@@ -1,13 +1,15 @@
 from models.__init__ import CONN, CURSOR
+import colorama
 
 class Album:
     
   all = []
 
-  def __init__(self, name, year, songs, id=None):
+  def __init__(self, name, year, songs, artist_id, id=None):
           self.name = name
           self.year = year
           self.songs = songs
+          self.artist_id = artist_id
           self.id = id
 
   @property
@@ -39,3 +41,60 @@ class Album:
               self._songs = songs_param
         else:
               raise Exception('Song has to be a string between 1 to 40 characters.')
+        
+  @property
+  def artist_id(self):
+        return self._artist_id
+  @artist_id.setter
+  def artist_id(self, artist_id_param):
+        if(isinstance(artist_id_param, int)):
+              self._artist_id = artist_id_param
+        else:
+              raise Exception('Artist ID must be an Integer.')
+        
+  def __repr__(self):
+        return (colorama.Fore.LIGHTGREEN_EX + f"< Album {self.id}: Name = {self.name}, Year = {self.year}, Songs = {self.songs}, Artist ID = {self.artist_id} >")
+  
+  @classmethod
+  def create_table(cls):
+        pass
+  
+  @classmethod
+  def drop_table(cls):
+        pass
+  
+  def save(self):
+        pass
+  
+  @classmethod
+  def create(cls, name, year, songs, artist_id):
+        pass
+  
+  @classmethod
+  def instance_from_db(cls, row):
+        pass
+  
+  @classmethod
+  def get_all(cls):
+        pass
+  
+  @classmethod
+  def find_by_id(cls, id):
+        pass
+  
+  @classmethod
+  def find_by_name(cls, name):
+        pass
+  
+  @classmethod
+  def find_by_year(cls, year):
+        pass
+  
+  def update(self):
+        pass
+  
+  def delete(self):
+        pass
+  
+  def artists(self):
+        pass

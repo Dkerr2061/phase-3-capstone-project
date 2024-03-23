@@ -7,7 +7,7 @@ from album_helpers import *
     
 
 def exit_program():
-    print("Goodbye!\n")
+    print(colorama.Fore.LIGHTYELLOW_EX + "Goodbye!\n")
     exit()
 
 def main():
