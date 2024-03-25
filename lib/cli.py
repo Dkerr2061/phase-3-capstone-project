@@ -17,7 +17,9 @@ def main():
         if choice == "0":
             exit_program()
         elif choice == "1":
-            helper_1()
+            interact_with_artist_data()
+        elif choice == "2":
+            interact_with_album_data()
         else:
             print("Invalid choice, please try again!\n")
 

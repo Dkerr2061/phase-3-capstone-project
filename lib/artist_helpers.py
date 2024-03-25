@@ -3,8 +3,8 @@ from models.artist import Artist
 import colorama
 
 
-def helper_1():
-    print("Performing useful function#1.")
+def interact_with_artist_data():
+    print(colorama.Fore.LIGHTGREEN_EX + "You are interacting with the artist data.")
 
 
 
