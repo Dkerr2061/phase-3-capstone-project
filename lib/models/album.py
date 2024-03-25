@@ -57,44 +57,131 @@ class Album:
   
   @classmethod
   def create_table(cls):
-        pass
+        sql = """
+          CREATE TABLE IF NOT EXISTS albums(
+          id INTEGER PRIMARY KEY,
+          name TEXT,
+          year INTEGER,
+          songs TEXT,
+          artist_id INTEGER
+          )
+        """
+        CURSOR.execute(sql)
   
   @classmethod
   def drop_table(cls):
-        pass
+        sql = """
+          DROP TABLE IF EXISTS albums;
+        """
+        CURSOR.execute(sql)
   
   def save(self):
-        pass
-  
+        sql = """
+          INSERT INTO albums (
+          name,
+          year,
+          songs,
+          artist_id
+          ) VALUES (?, ?, ?, ?)
+        """
+        CURSOR.execute(sql, (self.name, self.year, self.songs, self.artist_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        Album.all.append(self)
+
   @classmethod
   def create(cls, name, year, songs, artist_id):
-        pass
+        album = cls(name, year, songs, artist_id)
+        album.save()
+        return album
   
   @classmethod
   def instance_from_db(cls, row):
-        pass
+        album = cls(row[1], row[2], row[3], row[4])
+        album.id = row[0]
+        return album
   
   @classmethod
   def get_all(cls):
-        pass
+        sql = """
+          SELECT * FROM albums
+        """
+        rows = CURSOR.execute(sql).fetchall()
+
+        cls.all = [cls.instance_from_db(row) for row in rows]
+
+        return cls.all
   
   @classmethod
   def find_by_id(cls, id):
-        pass
+        sql = """
+          SELECT * FROM albums
+          WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+
+        if row:
+              return cls.instance_from_db(row)
+        else:
+              return None
   
   @classmethod
   def find_by_name(cls, name):
-        pass
+        sql = """
+          SELECT * FROM albums
+          WHERE name = ?
+        """
+        row = CURSOR.execute(sql, (name,)).fetchone()
+
+        if row:
+              return cls.instance_from_db(row)
+        else:
+              return None
   
   @classmethod
   def find_by_year(cls, year):
-        pass
+        sql = """
+          SELECT * FROM albums
+          WHERE year = ?
+        """
+        rows = CURSOR.execute(sql, (year,)).fetchall()
+
+        cls.all = [cls.instance_from_db(row) for row in rows]
+        return cls.all
   
   def update(self):
-        pass
-  
+        sql = """
+          UPDATE albums
+          SET name = ?, year = ?, songs = ?, artist_id = ?
+          WHERE id = ?
+        """
+        CURSOR.execute(sql (self.name, self.year, self.songs, self.artist_id, self.id))
+        CONN.commit()
+
   def delete(self):
-        pass
+        sql = """
+          DELETE FROM albums
+          WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id))
+        CONN.commit()
+
+        Album.all = [album for album in Album.all if album.id != self.id]
   
   def artists(self):
-        pass
+        from models.artist import Artist
+
+        sql = """
+          SELECT artists.id, artists.name
+          FROM artists
+          INNER JOIN albums
+          ON artists.id = artist_id
+          WHERE artist_id = ?
+        """
+        row = CURSOR.execute(sql, (self.artist_id,)).fetchone()
+
+        if row:
+              return Artist.instance_from_db(row)
+        else:
+              return None

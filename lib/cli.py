@@ -19,7 +19,7 @@ def main():
         elif choice == "1":
             helper_1()
         else:
-            print("Invalid choice")
+            print("Invalid choice, please try again!\n")
 
 
 def menu():

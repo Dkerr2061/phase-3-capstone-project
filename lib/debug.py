@@ -6,5 +6,5 @@ from models.artist import Artist
 from models.album import Album
 import ipdb
 
-
-ipdb.set_trace()
+if __name__ == "__main__":
+  ipdb.set_trace()
