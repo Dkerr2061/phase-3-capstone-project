@@ -4,7 +4,6 @@ import colorama
 
 def initialize_artist_data():
     Artist.create_table()
-
     Artist.get_all()
 
 
@@ -43,7 +42,7 @@ def retrieve_all_artists():
      user_input = input("Select option: ")
      while True:
         if(user_input == 'a'):
-            for artist in Artist.get_all():
+            for artist in Artist.all:
                 print(artist)
             user_input = input("\n Press 'return' to continue.")
             break
