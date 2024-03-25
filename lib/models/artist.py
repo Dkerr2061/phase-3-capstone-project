@@ -14,10 +14,10 @@ class Artist:
         return self._name
     @name.setter
     def name(self, name_param):
-        if( not hasattr(self, 'name')) and (isinstance(name_param, str)):
+        if(isinstance(name_param, str)):
             self._name = name_param
         else:
-            raise Exception('Artist name has to be a string and cannot be repeated.')
+            raise Exception('Artist name has to be a string.')
         
     def __repr__(self):
         return (colorama.Fore.LIGHTGREEN_EX + f"< Artist {self.id}: Name = {self.name} >")
@@ -102,7 +102,7 @@ class Artist:
         sql = """
           UPDATE artists
           SET name = ?
-          WHERE id ?
+          WHERE id = ?
         """
         CURSOR.execute(sql, (self.name, self.id))
         CONN.commit()
@@ -124,5 +124,5 @@ class Artist:
           SELECT * FROM albums
           WHERE albums.artist_id = ?
         """
-        rows = CURSOR.execute(sql, (self.id)).fetchall()
+        rows = CURSOR.execute(sql, (self.id,)).fetchall()
         return [Album.instance_from_db(row) for row in rows]

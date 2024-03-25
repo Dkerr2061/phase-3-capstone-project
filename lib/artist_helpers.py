@@ -16,13 +16,13 @@ def interact_with_artist_data():
              retrieve_all_artists()
              break
         elif (user_input == 'c'):
-             print("Enter new artists name: ")
+             create_new_artist()
              break
         elif (user_input == 'u'):
-             print("Enter the ID for the artist to update: ")
+             update_artist()
              break
         elif (user_input == 'd'):
-             print("Delete artist")
+             delete_artist()
              break
         else:
              print(colorama.Fore.RED + 'Invalid input, please try again.')
@@ -85,3 +85,41 @@ def artist_search_options():
      print("a: To see all artist's.")
      print("i: To search by id.")
      print("n: To search by name.\n")
+
+
+def create_new_artist():
+     user_input = input("Enter new artist name: ")
+     new_artist = Artist.create(user_input)
+     print("Here is the new artist: ")
+     print(new_artist)
+     user_input = input("\n Press 'return' to continue.")
+
+def delete_artist():
+    user_input = input("Enter artist's id to delete: ")
+    user_input = int(user_input)
+    artist = Artist.find_by_id(user_input)
+    if artist:
+        artist.delete()
+        print(f"Artist with the id of {user_input} has been deleted.")
+    else:
+         print(f"Artist with id {user_input} not found")
+    user_input = input("\n Press 'return' to continue.")
+
+def update_artist():
+    user_input = input("Enter artist's id to update: ")
+    user_input = int(user_input)
+    artist = Artist.find_by_id(user_input)
+    if artist:
+        updated_artist_name = input("Enter the updated name for the artist: ")
+        artist.name = updated_artist_name
+        artist.update()
+        print(f"Artist name has been changed to {artist}")
+    else:
+         raise Exception("Could not update artist.")
+    user_input = input("\n Press 'return' to continue.")
+
+          
+            
+
+          
+     
