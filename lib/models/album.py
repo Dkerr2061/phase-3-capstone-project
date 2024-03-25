@@ -164,7 +164,7 @@ class Album:
           DELETE FROM albums
           WHERE id = ?
         """
-        CURSOR.execute(sql, (self.id))
+        CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
         Album.all = [album for album in Album.all if album.id != self.id]
