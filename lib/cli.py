@@ -39,4 +39,5 @@ def menu():
 
 if __name__ == "__main__":
     initialize_artist_data()
+    initialize_album_data()
     main()

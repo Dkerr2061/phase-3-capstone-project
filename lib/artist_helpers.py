@@ -21,6 +21,9 @@ def interact_with_artist_data():
         elif (user_input == 'u'):
              update_artist()
              break
+        elif (user_input == 'al'):
+             get_artist_album()
+             break
         elif (user_input == 'd'):
              delete_artist()
              break
@@ -34,6 +37,7 @@ def artist_menu():
         print("\nPress A to search artists")
         print("Press C to create artist")
         print("Press U to update artist")
+        print("Press AL to get artist album's")
         print("Press D to delete artist\n")
 
         
@@ -117,6 +121,23 @@ def update_artist():
     else:
          raise Exception("Could not update artist.")
     user_input = input("\n Press 'return' to continue.")
+
+def get_artist_album():
+     while True:
+            try:
+                user_input = input("Enter artist's ID to retrieve album: ")
+                user_input = int(user_input)
+                artist = Artist.find_by_id(user_input)
+                if(artist):
+                        print(f"Here is Artist #{artist.id}'s albums:")
+                        print(artist.albums())
+                else:
+                     print("\nAlbum was not found.")
+                user_input = input("\n Press 'return' to continue.")
+                break
+            except:
+                 print("Please enter correct input.")
+                    
 
           
             
