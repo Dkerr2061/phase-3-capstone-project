@@ -20,7 +20,7 @@ def interact_with_album_data():
             update_album()
             break
         elif(user_input == 'ar'):
-            print("this is to get artist data")
+            list_of_artists()
             break
         elif(user_input == 'd'):
             delete_album()
@@ -127,4 +127,18 @@ def delete_album():
         print(f"Album with the id of {id_} has been deleted.")
     else:
          print(f"Album with id {id_} not found")
+    user_input = input("\n Press 'return' to continue.")
+
+def list_of_artists():
+    from models.artist import Artist
+    artist_id = input("Enter artist's ID: ")
+    artist_id = int(artist_id)
+    artist = Artist.find_by_id(artist_id)
+    if(artist):
+        albums = artist.albums()
+        for album in albums:
+            print(album)
+            print(artist)
+    else:
+        print(f"Artist {artist_id} was not found.")
     user_input = input("\n Press 'return' to continue.")
