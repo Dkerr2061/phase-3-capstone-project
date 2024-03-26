@@ -137,8 +137,8 @@ def list_of_artists():
     if(artist):
         albums = artist.albums()
         for album in albums:
-            print(album)
             print(artist)
+            print(album)
     else:
         print(f"Artist {artist_id} was not found.")
     user_input = input("\n Press 'return' to continue.")
