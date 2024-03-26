@@ -17,7 +17,7 @@ def interact_with_album_data():
             create_new_album()
             break
         elif(user_input == 'u'):
-            print("this is to update an album")
+            update_album()
             break
         elif(user_input == 'ar'):
             print("this is to get artist data")
@@ -98,3 +98,22 @@ def create_new_album():
         user_input = input("\n Press 'return' to continue.")
     except Exception as exc:
         print("Error, new album could not be created.", exc)
+
+def update_album():
+    user_input = input("Enter album's ID: ")
+    user_input = int(user_input)
+    album = Album.find_by_id(user_input)
+    if(album):
+        updated_album_name = input("Enter updated album name: ")
+        album.name = updated_album_name
+        updated_album_year = input("Enter updated album year: ")
+        album.year = int(updated_album_year)
+        updated_album_song = input("Enter updated favorite song: ")
+        album.songs = updated_album_song
+        updated_album_artist_id = input("Enter updated album artist's ID: ")
+        album.artist_id = int(updated_album_artist_id)
+        album.update()
+        print(f"Success, {album} was updated.")
+        user_input = input("\n Press 'return' to continue.")
+    else:
+        raise Exception("Album could not be updated.")

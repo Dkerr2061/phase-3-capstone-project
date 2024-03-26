@@ -17,7 +17,7 @@ class Album:
         return self._name
   @name.setter
   def name(self, name_param):
-        if(not hasattr(self, 'name')) and (isinstance(name_param, str)):
+        if(isinstance(name_param, str)):
               self._name = name_param
         else:
               raise Exception('Album name has to be a string and cannot be repeated.')
@@ -156,7 +156,7 @@ class Album:
           SET name = ?, year = ?, songs = ?, artist_id = ?
           WHERE id = ?
         """
-        CURSOR.execute(sql (self.name, self.year, self.songs, self.artist_id, self.id))
+        CURSOR.execute(sql, (self.name, self.year, self.songs, self.artist_id, self.id))
         CONN.commit()
 
   def delete(self):
