@@ -14,7 +14,7 @@ def interact_with_album_data():
             search_for_album()
             break
         elif(user_input == 'c'):
-            print("this is to crate a new album")
+            create_new_album()
             break
         elif(user_input == 'u'):
             print("this is to update an album")
@@ -83,3 +83,18 @@ def search_for_album():
                 except:
                     print("\n Invalid input, please try again.")
             break
+
+
+def create_new_album():
+    name = input("Enter new album's name: ")
+    year = input("Enter new album's release year: ")
+    year = int(year)
+    songs = input("Enter your favorite song from album: ")
+    artist_id = input("Enter the ID of the album's artist: ")
+    artist_id = int(artist_id)
+    try:
+        new_album = Album.create(name, year, songs, artist_id)
+        print(f"Success {new_album} was created")
+        user_input = input("\n Press 'return' to continue.")
+    except Exception as exc:
+        print("Error, new album could not be created.", exc)
