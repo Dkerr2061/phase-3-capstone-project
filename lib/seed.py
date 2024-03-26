@@ -12,7 +12,7 @@ CONN.commit()
 
 
 Artist.create("Tool")
-Artist.create("Pink FLoyd")
+Artist.create("Pink Floyd")
 Artist.create("Flume")
 Artist.create("Soda Stero")
 Artist.create("Halsey")

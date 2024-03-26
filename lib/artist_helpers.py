@@ -13,7 +13,7 @@ def interact_with_artist_data():
         artist_menu()
         user_input = input("Select and option: ")
         if(user_input == 'a'):
-             retrieve_all_artists()
+             search_artist()
              break
         elif (user_input == 'c'):
              create_new_artist()
@@ -41,7 +41,7 @@ def artist_menu():
         print("Press D to delete artist\n")
 
         
-def retrieve_all_artists():
+def search_artist():
      artist_search_options()
      user_input = input("Select option: ")
      while True:
@@ -69,6 +69,7 @@ def retrieve_all_artists():
         elif(user_input == 'n'):
             while True:
                 try:
+                    print("\nTo search for artist name make sure that every word is Capitalized.")
                     user_input = input("Enter artist's name: ")
                     user_input = str(user_input)
                     artist = Artist.find_by_name(user_input)
@@ -76,7 +77,7 @@ def retrieve_all_artists():
                          print("\nHere are the artist's that match that name:")
                          print(Artist.find_by_name(user_input))
                     else:
-                         print("No artist waas found with that name.")
+                         print("No artist was found with that name.")
                     user_input = input("\n Press 'return' to continue.")
                     break
                 except:
@@ -86,9 +87,9 @@ def retrieve_all_artists():
 
 def artist_search_options():
      print("\nWould you like to see all or search by ID or Name?")
-     print("a: To see all artist's.")
-     print("i: To search by id.")
-     print("n: To search by name.\n")
+     print("Press A to see all artist's.")
+     print("Press I to search by id.")
+     print("Press N to search by name.\n")
 
 
 def create_new_artist():
