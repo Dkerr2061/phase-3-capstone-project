@@ -23,7 +23,7 @@ def interact_with_album_data():
             print("this is to get artist data")
             break
         elif(user_input == 'd'):
-            print("this is used to delete an album")
+            delete_album()
             break
         else:
             print("Invalid input, please try again.")
@@ -117,3 +117,14 @@ def update_album():
         user_input = input("\n Press 'return' to continue.")
     else:
         raise Exception("Album could not be updated.")
+    
+def delete_album():
+    id_ = input("Enter album's ID to delete: ")
+    id_ = int(id_)
+    album = Album.find_by_id(id_)
+    if(album):
+        album.delete()
+        print(f"Album with the id of {id_} has been deleted.")
+    else:
+         print(f"Album with id {id_} not found")
+    user_input = input("\n Press 'return' to continue.")
